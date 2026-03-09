@@ -1,0 +1,53 @@
+# @package _global_
+
+# Experiment: Global_EXC_30Hz_smoothing25ms
+# Reproduces the main excitatory model from the Cascade paper.
+# All 18 excitatory ground truth datasets, 30 Hz, 25 ms smoothing.
+
+defaults:
+  - override /data: cascade
+  - override /model: cascade
+  - override /trainer: default
+
+model_name: "Global_EXC_30Hz_smoothing25ms"
+
+tags:
+  - global_exc
+  - 30hz
+  - smoothing25ms
+
+# data overrides
+data:
+  sampling_rate: 30
+  smoothing: 0.025
+  noise_levels: [2, 3, 4, 5, 6, 7, 8, 9]
+  batch_size: 1024
+  training_datasets:
+    - DS01-OGB1-m-V1
+    - DS02-OGB1-2-m-V1
+    - DS03-Cal520-m-S1
+    - DS04-OGB1-zf-pDp
+    - DS05-Cal520-zf-pDp
+    - DS06-GCaMP6f-zf-aDp
+    - DS07-GCaMP6f-zf-dD
+    - DS08-GCaMP6f-zf-OB
+    - DS09-GCaMP6f-m-V1
+    - DS10-GCaMP6f-m-V1-neuropil-corrected
+    - DS11-GCaMP6f-m-V1-neuropil-corrected
+    - DS12-GCaMP6s-m-V1-neuropil-corrected
+    - DS13-GCaMP6s-m-V1-neuropil-corrected
+    - DS14-GCaMP6s-m-V1
+    - DS15-GCaMP6s-m-V1
+    - DS16-GCaMP6s-m-V1
+    - DS17-GCaMP5k-m-V1
+    - DS18-R-CaMP-m-CA3
+    - DS19-R-CaMP-m-S1
+    - DS20-jRCaMP1a-m-V1
+    - DS21-jGECO1a-m-V1
+
+# model overrides
+model:
+  ensemble_size: 5
+
+trainer:
+  max_epochs: 20

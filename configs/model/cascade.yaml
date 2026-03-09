@@ -1,0 +1,16 @@
+_target_: src.models.cascade_module.CascadeLitModule
+
+optimizer:
+  _target_: torch.optim.Adagrad
+  _partial_: true
+  lr: 0.05
+
+net:
+  _target_: src.models.components.cascade_net.CascadeNet
+  filter_sizes: [31, 19, 5]
+  filter_numbers: [30, 40, 50]
+  dense_expansion: 10
+  windowsize: 64
+
+# ensemble_size is handled at the training loop level, not the module level
+# loss function is MSELoss, hardcoded in CascadeLitModule (matching original CASCADE)

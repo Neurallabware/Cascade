@@ -1,0 +1,10 @@
+wandb:
+  _target_: lightning.pytorch.loggers.WandbLogger
+  project: "cascade-torch"
+  name: null  # auto-generated run name
+  save_dir: "${paths.output_dir}"
+  offline: false
+  id: null    # set to resume a specific run
+  log_model: false
+  group: ""
+  tags: []

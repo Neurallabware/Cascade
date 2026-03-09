@@ -27,7 +27,7 @@ Import python packages
 
 """
 
-import os
+import os, sys  # PATCHED: added missing sys import
 import shutil
 
 if 'Demo scripts' in os.getcwd():
@@ -35,9 +35,9 @@ if 'Demo scripts' in os.getcwd():
     os.chdir('..')  # change to main directory
 print('Current directory: {}'.format( os.getcwd() ))
 
-import keras
+# import keras  # PATCHED: removed keras import (TF leftover, not needed for PyTorch version)
 from copy import deepcopy
-from scipy.ndimage.filters import gaussian_filter
+from scipy.ndimage import gaussian_filter  # PATCHED: use non-deprecated import
 import numpy as np
 
 # perform checks to catch most likly import errors
@@ -137,7 +137,7 @@ for index in range(len(all_training_datasets_new)):
   ground_truth = ground_truth[:,]
 
   # perform predictions
-  spike_rates = cascade.predict( model_name, calcium.T )
+  spike_rates = cascade.predict( cfg['model_name'], calcium.T )  # PATCHED: use temporary model, not original
   spike_rates = np.squeeze(spike_rates)
 
   # take only non-nan values

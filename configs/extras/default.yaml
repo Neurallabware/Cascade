@@ -1,0 +1,3 @@
+# extras config
+enforce_tags: true
+print_config: true

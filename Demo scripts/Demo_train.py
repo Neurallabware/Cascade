@@ -27,7 +27,7 @@ Import python packages
 
 import os, sys
 
-os.chdir(r'C:\Users\peter\Desktop\CascadeTorch\CascadeTorch\Demo scripts')
+# os.chdir(r'C:\Users\peter\Desktop\CascadeTorch\CascadeTorch\Demo scripts')  # PATCHED: removed hardcoded Windows path
 
 if "Demo scripts" in os.getcwd():
     sys.path.append(os.path.abspath(".."))  # add parent directory to path for imports
