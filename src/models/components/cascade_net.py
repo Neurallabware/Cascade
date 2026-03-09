@@ -52,6 +52,15 @@ class CascadeNet(nn.Module):
         self.dense_expansion = dense_expansion
         self.windowsize = windowsize
 
+        flattened_size = self._calculate_flattened_size(windowsize, self.filter_sizes)
+        if flattened_size <= 0:
+            min_windowsize = self._minimum_supported_windowsize(self.filter_sizes)
+            raise ValueError(
+                "windowsize={} is too small for filter_sizes={}. "
+                "The default CascadeNet architecture requires windowsize >= {}."
+                .format(windowsize, self.filter_sizes, min_windowsize)
+            )
+
         # Convolutional layers
         self.conv1 = nn.Conv1d(1, filter_numbers[0], filter_sizes[0], stride=1)
         self.relu1 = nn.ReLU()
@@ -71,7 +80,7 @@ class CascadeNet(nn.Module):
         self.relu4 = nn.ReLU()
 
         # Final regression head
-        flattened_size = self._calculate_flattened_size(windowsize, filter_sizes) * dense_expansion
+        flattened_size = flattened_size * dense_expansion
         self.dense2 = nn.Linear(flattened_size, 1)
 
     @staticmethod
@@ -84,6 +93,14 @@ class CascadeNet(nn.Module):
         size = size - (filter_sizes[2] - 1)  # conv3
         size = size // 2                      # pool2
         return size
+
+    @staticmethod
+    def _minimum_supported_windowsize(filter_sizes: list[int]) -> int:
+        """Return the smallest window size that yields a positive flattened size."""
+        candidate = 1
+        while CascadeNet._calculate_flattened_size(candidate, filter_sizes) <= 0:
+            candidate += 1
+        return candidate
 
     def forward(self, x):
         """Forward pass.
