@@ -1,0 +1,23 @@
+# @package _global_
+
+# debug config: fast run with minimal resources
+
+defaults:
+  - override /trainer: default
+
+trainer:
+  max_epochs: 1
+  accelerator: cpu
+  devices: 1
+  detect_anomaly: true
+
+# disable loggers and callbacks for debug
+logger: null
+callbacks: null
+
+extras:
+  enforce_tags: false
+  print_config: true
+
+tags:
+  - debug

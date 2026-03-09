@@ -1,0 +1,42 @@
+# @package _global_
+
+# main training configuration composing all config groups
+
+defaults:
+  - _self_
+  - data: cascade
+  - model: cascade
+  - callbacks: default
+  - logger: csv
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+
+  # experiment configs (override everything above)
+  - experiment: null
+
+  # debugging config (override everything above)
+  - debug: null
+
+# task name for logging
+task_name: "train"
+
+# tags for run filtering
+tags:
+  - ${task_name}
+
+# seed for reproducibility
+seed: 42
+
+# pass training flag
+train: true
+
+# pass testing flag
+test: true
+
+# checkpoint path for resuming training
+ckpt_path: null
+
+# model name (used for saving)
+model_name: "cascade_model"

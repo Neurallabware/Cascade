@@ -1,0 +1,9 @@
+# path configs
+root_dir: ${oc.env:PROJECT_ROOT,/home/yz/spike_deconv/CascadeTorch}
+data_dir: ${paths.root_dir}/data/
+ground_truth_dir: ${paths.data_dir}/Ground_truth/
+pretrained_models_dir: ${paths.data_dir}/Pretrained_models/
+example_datasets_dir: ${paths.data_dir}/Example_datasets/
+log_dir: ${paths.root_dir}/logs/
+output_dir: ${hydra:runtime.output_dir}
+work_dir: ${hydra:runtime.cwd}

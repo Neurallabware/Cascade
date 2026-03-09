@@ -1,0 +1,39 @@
+# @package _global_
+
+# evaluation configuration
+
+defaults:
+  - _self_
+  - data: cascade
+  - model: cascade
+  - callbacks: null
+  - logger: csv
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+
+  # experiment configs
+  - experiment: null
+
+# task name for logging
+task_name: "eval"
+
+# tags for run filtering
+tags:
+  - ${task_name}
+
+# seed for reproducibility
+seed: 42
+
+# do not train
+train: false
+
+# run test
+test: true
+
+# checkpoint path (required for evaluation)
+ckpt_path: ???
+
+# model name
+model_name: "cascade_model"

@@ -1,6 +1,46 @@
-# locally cached files
+# Data
+data/
+
+# Logs
+logs/
+outputs/
+
+# Python
 __pycache__/
-*.pyc
-.ipynb_checkpoints/
-*.eggs/
+*.py[cod]
+*$py.class
 *.egg-info/
+*.egg
+*.eggs/
+dist/
+build/
+
+# Virtual environments
+.env
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Hydra
+.hydra/
+
+# Weights & Biases
+wandb/
+
+# Model checkpoints (Lightning)
+*.ckpt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local configs (machine-specific overrides)
+configs/local/

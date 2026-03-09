@@ -24,7 +24,7 @@ Import python packages
 
 """
 
-import os
+import os, sys  # PATCHED: added missing 'sys' import
 if 'Demo scripts' in os.getcwd():
     sys.path.append( os.path.abspath('..') ) # add parent directory to path for imports
     os.chdir('..')  # change to main directory
@@ -58,7 +58,8 @@ def load_neurons_x_time(file_path):
 def load_predictions(file_path):
     """Custom method to load spike predictions produced by "Demo_predict.py" """
 
-    spike_prob = sio.loadmat(file_path)['spike_prob']
+    mat = sio.loadmat(file_path)
+    spike_prob = mat.get('spike_prob', mat.get('spike_rates'))  # PATCHED: handle both key names
 
     return spike_prob
 
