@@ -1,5 +1,6 @@
 # Data
 data/
+data
 
 # Logs
 logs/
@@ -42,5 +43,35 @@ wandb/
 .DS_Store
 Thumbs.db
 
+# Local reference docs
+Rupprecht et al. - 2021 - A database and deep learning toolbox for noise-optimized, generalized spike inference from calcium i.pdf
+
 # Local configs (machine-specific overrides)
 configs/local/
+
+# Python test/tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Notebook and benchmark outputs (generated locally)
+notebook_execution_report_*.md
+notebooks/*.npz
+notebooks/*.log
+notebooks/figures/
+
+# Local inference artifacts in example datasets
+Example_datasets/**/predictions_*.mat
+Example_datasets/**/predictions_*.npy
+
+# Local temporary model exports
+Pretrained_models/temporary model/
+
+# Downloaded model bundles (tracked model files remain tracked)
+Pretrained_models/*/
+!Pretrained_models/AGENTS.md
